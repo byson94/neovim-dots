@@ -1,4 +1,5 @@
 require("config.lazy")
+require("config.lsp")
 
 vim.api.nvim_create_autocmd('FileType', {
   desc = 'Enable native Tree-sitter highlighting and folding',
@@ -9,3 +10,4 @@ vim.api.nvim_create_autocmd('FileType', {
     end
   end,
 })
+

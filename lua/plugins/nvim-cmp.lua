@@ -1,13 +1,18 @@
 return {
   'hrsh7th/nvim-cmp',
-  lazy = false,
+  -- lazy = false,
+  event = { "InsertEnter", "CmdlineEnter" }, -- load when typing
   dependencies = {
     'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-path',
   },
   config = function()
     local cmp = require('cmp')
     cmp.setup({
       sources = {
+        { name = 'nvim-lsp' },
+        { name = 'path' },
         { name = 'buffer' },
       },
       mapping = cmp.mapping.preset.insert({

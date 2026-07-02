@@ -24,3 +24,6 @@ vim.opt.undofile = true
 
 -- Split right by default
 vim.opt.splitright = true
+
+-- Remove margin diagnostic signs
+vim.diagnostic.config({ signs = false })

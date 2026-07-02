@@ -1,9 +1,14 @@
 return {
   {
     'nvim-telescope/telescope.nvim', version = '*',
+    cmd = "Telescope",
     dependencies = {
       'nvim-lua/plenary.nvim',
       { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+    },
+    keys = {
+      { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
+      { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Live Grep" },
     },
     config = function()
       require('telescope').setup({})
