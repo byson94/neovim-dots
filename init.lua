@@ -2,6 +2,12 @@ require("config.lazy")
 require("config.lsp")
 require("config.perfs")
 
+vim.filetype.add({
+  extension = {
+    nbcl = "nbcl",
+  },
+})
+
 vim.api.nvim_create_autocmd('FileType', {
   desc = 'Enable native Tree-sitter highlighting and folding',
   callback = function()
