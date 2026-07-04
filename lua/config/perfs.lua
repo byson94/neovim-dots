@@ -23,3 +23,5 @@ vim.g.loaded_zipPlugin = 1
 vim.g.loaded_tar = 1
 vim.g.loaded_tarPlugin = 1
 vim.g.loaded_tohtml = 1
+vim.g.loaded_cpp_syntax = 1
+vim.g.loaded_c_syntax = 1

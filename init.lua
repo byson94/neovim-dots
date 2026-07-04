@@ -7,6 +7,12 @@ vim.filetype.add({
   },
 })
 
+vim.filetype.add({
+  extension = {
+    h = "c",
+  },
+})
+
 vim.api.nvim_create_autocmd('FileType', {
   desc = 'Enable native Tree-sitter highlighting and folding',
   callback = function()

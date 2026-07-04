@@ -25,7 +25,7 @@ require("lazy").setup({
     {
         "lsp-manager", 
         dir = vim.fn.stdpath("config") .. "/lua/config",
-        event = { "BufReadPost", "BufNewFile" },
+        event = "VeryLazy",
         config = function()
           require("config.lsp")
         end,
