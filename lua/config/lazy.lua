@@ -22,7 +22,14 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   spec = {
     { import = "plugins" },
+    {
+        "lsp-manager", 
+        dir = vim.fn.stdpath("config") .. "/lua/config",
+        event = { "BufReadPost", "BufNewFile" },
+        config = function()
+          require("config.lsp")
+        end,
+    }
   },
-  install = { colorscheme = { "habamax" } },
   checker = { enabled = true },
 })

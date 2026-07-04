@@ -1,6 +1,5 @@
-require("config.lazy")
-require("config.lsp")
 require("config.perfs")
+require("config.lazy")
 
 vim.filetype.add({
   extension = {

@@ -40,3 +40,25 @@ vim.api.nvim_create_autocmd("FileType", {
     })
   end,
 })
+
+local function setup_lsp()
+  local ft = vim.bo.filetype
+  local capabilities = require('blink.cmp').get_lsp_capabilities()
+
+  if ft == "c" or ft == "cpp" then
+    vim.lsp.start({
+      name = "clangd",
+      cmd = {
+        "clangd",
+        "--background-index=false",
+        "-j=1",
+        "--limit-results=10",
+        "--malloc-trim"
+      },
+      root_dir = vim.fs.dirname(vim.fs.find({ '.git', 'compile_commands.json', 'compile_flags.txt' }, { upward = true })[1]) or vim.fn.getcwd(),
+      capabilities = capabilities,
+    });
+  end
+end
+
+setup_lsp()
