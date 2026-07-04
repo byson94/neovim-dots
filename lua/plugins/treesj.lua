@@ -1,6 +1,10 @@
 return {
   'Wansmer/treesj',
-  keys = { '<leader>tm', '<leader>tj', '<leader>ts' },
+  keys = { 
+      { '<leader>tm', desc = 'TreeSJ Toggle' },
+      { '<leader>tj', desc = 'TreeSJ Split' },
+      { '<leader>ts', desc = 'TreeSJ Join' },
+  },
   dependencies = { 'nvim-treesitter/nvim-treesitter' }, 
   config = function()
     require('treesj').setup({
