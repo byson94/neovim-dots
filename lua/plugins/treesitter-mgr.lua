@@ -12,5 +12,11 @@ return {
         },
       },
     })
+
+    vim.filetype.add({
+      extension = {
+        nbcl = "nbcl",
+      },
+    })
   end,
 }

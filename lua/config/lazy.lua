@@ -22,15 +22,16 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   spec = {
     { import = "plugins" },
-    {
-        "lsp-manager", 
-        dir = vim.fn.stdpath("config") .. "/lua/config",
-        event = "VeryLazy",
-        config = function()
-          require("config.lsp")
-        end,
-    }
   },
-  checker = { enabled = true },
+  checker = { 
+      enabled = true,
+      notify = false
+  },
+  change_detection = {
+      enabled = true,
+      notify = false,
+  },
   rocks = { enabled = false }
 })
+
+require("config.lsp")
