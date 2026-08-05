@@ -21,3 +21,6 @@ vim.keymap.set('n', '<C-l>', '<C-w>l')
 
 -- Go to normal mode in terminal
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>')
+
+-- LSP Diagnostics
+vim.api.nvim_set_keymap('n', '<leader>do', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })

@@ -19,46 +19,27 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 -- C LSP --
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "c", "cpp", "h", "hpp" },
-  callback = function(ev)
-    local capabilities = require('blink.cmp').get_lsp_capabilities()
-
-    vim.lsp.start({
-      name = "clangd",
-      cmd = {
-        "clangd",
-        "--background-index=false",
-        "-j=1",
-        "--limit-results=10",
-        "--malloc-trim"
-      },
-      root_dir = vim.fs.dirname(vim.fs.find({ '.git', 'compile_commands.json', 'compile_flags.txt' }, { upward = true })[1]) or vim.fn.getcwd(),
-      capabilities = capabilities,
-    }, {
-      bufnr = ev.buf,
-    })
-  end,
+local capabilities = require('blink.cmp').get_lsp_capabilities()
+vim.lsp.config('clangd', {
+    capabilities = capabilities
 })
 
-local function setup_lsp()
-  local ft = vim.bo.filetype
-  local capabilities = require('blink.cmp').get_lsp_capabilities()
+vim.lsp.enable('clangd');
 
-  if ft == "c" or ft == "cpp" then
-    vim.lsp.start({
-      name = "clangd",
-      cmd = {
-        "clangd",
-        "--background-index=false",
-        "-j=1",
-        "--limit-results=10",
-        "--malloc-trim"
-      },
-      root_dir = vim.fs.dirname(vim.fs.find({ '.git', 'compile_commands.json', 'compile_flags.txt' }, { upward = true })[1]) or vim.fn.getcwd(),
-      capabilities = capabilities,
-    });
-  end
-end
+-- Rust LSP --
+vim.lsp.config('rust_analyzer', {
+    capabilities = capabilities,
+    settings = {
+        ['rust-analyzer'] = {
+            cargo = {
+                allTargets = false,
+            },
+            checkOnSave = true,
+            procMacro = { enable = false },
+            inlayHints = { enable = false },
+            diagnostics = { experimental = { enable = false } },
+        },
+    },
+})
 
-setup_lsp()
+vim.lsp.enable('rust_analyzer')
