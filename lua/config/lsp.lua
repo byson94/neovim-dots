@@ -26,20 +26,3 @@ vim.lsp.config('clangd', {
 
 vim.lsp.enable('clangd');
 
--- Rust LSP --
-vim.lsp.config('rust_analyzer', {
-    capabilities = capabilities,
-    settings = {
-        ['rust-analyzer'] = {
-            cargo = {
-                allTargets = false,
-            },
-            checkOnSave = true,
-            procMacro = { enable = false },
-            inlayHints = { enable = false },
-            diagnostics = { experimental = { enable = false } },
-        },
-    },
-})
-
-vim.lsp.enable('rust_analyzer')
