@@ -1,18 +1,28 @@
 -- Make nvim appear fullscreen in kitty
-vim.api.nvim_create_autocmd({ "UIEnter", "ColorScheme" }, {
-  callback = function()
-    local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
-    if not normal or not normal.bg then
-      return
+local function send_osc(code)
+    if vim.env.TMUX then
+        return string.format("\27Ptmux;\27%s\27\\", code)
     end
-    io.write(string.format("\027]11;#%06x\027\\", normal.bg))
-  end,
+    return code
+end
+
+vim.api.nvim_create_autocmd({ "UIEnter", "ColorScheme" }, {
+    callback = function()
+        local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
+        if normal and normal.bg then
+            local hex_color = string.format("#%06x", normal.bg)
+            local osc11 = string.format("\27]11;%s\27\\", hex_color)
+            io.write(send_osc(osc11))
+            io.stdout:flush()
+        end
+    end,
 })
 
 vim.api.nvim_create_autocmd("VimLeave", {
-  callback = function()
-    io.write("\027]111\027\\")
-  end,
+    callback = function()
+        io.write(send_osc("\27]111\27\\"))
+        io.stdout:flush()
+    end,
 })
 
 -- relative numbers
