@@ -25,3 +25,15 @@ vim.lsp.config('clangd', {
 })
 
 vim.lsp.enable('clangd');
+
+-- Go LSP --
+vim.lsp.config('gopls', {
+    capabilities = capabilities
+})
+vim.lsp.enable('gopls')
+
+-- Python LSP --
+vim.lsp.config('ty', {
+    capabilities = capabilities
+})
+vim.lsp.enable('ty')
